@@ -26,8 +26,6 @@ function game() {
         img = document.createElement('img')
         img.src = "/img/" + data[i]['img']
         img.alt = data[i]['name']
-        img.style.width = '200px';
-        img.style.height = '300px';
         img.onclick = function () {guess(this)}
         
         wrapper.append(img)
