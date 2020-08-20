@@ -1,6 +1,3 @@
-require 'sinatra'
-require 'slim' 
-require 'json'
 
 class Server < Sinatra::Base 
     get "/" do 
