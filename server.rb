@@ -1,6 +1,3 @@
-require 'sinatra'
-require 'slim' 
-require 'json'
 
 class Server < Sinatra::Base 
     get "/" do 
@@ -11,7 +8,6 @@ class Server < Sinatra::Base
     get "/game" do
         @people = File.read "people.json"
         @people = JSON.parse(@people)
-        p @people.class  
         slim :game 
     end 
 end
