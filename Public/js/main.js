@@ -8,12 +8,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function game() {
     data = document.querySelector('.hide')
-    console.log(data.innerHTML.replace('=&gt;', ':'))
-    data = JSON.parse(data.innerHTML.replaceAll('=&gt;', ':'))
+
+    // Converts the imported data to JSON after correcting the format.
+    temp = data.innerHTML
+    for (i = 0; i < Math.round(data.innerHTML.length / 4); i ++) {
+        temp = temp.replace('=&gt;', ':')
+    }
+    data = JSON.parse(temp)
 
     wrapper = document.querySelector('body')
     dataLength = Object.keys(data).length
     running = true
+
+    // Generate user
     while (running) {
         counter = window.localStorage.getItem('answerCounter');
 
