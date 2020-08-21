@@ -14,7 +14,18 @@ function game() {
     console.log(data)
     dataLength = Object.keys(data).length
     console.log(dataLength)
-    randomName = data[Math.round(Math.random(dataLength)*dataLength -1)]['name']
+    running = true
+    while (running) {
+        keys = Object.keys(window.localStorage)
+        if (window.localStorage.getItem())
+        slump = Math.random(dataLength - 1)*dataLength -1
+        randomName = data[Math.round(slump)]['name']
+  
+        temp = window.localStorage.getItem(randomName);
+        if (temp <= 3) {
+            running = false
+        }
+    }
     console.log(randomName)
     nameElement = document.createElement('h2')
     nameElement.innerHTML = randomName
@@ -40,19 +51,30 @@ function guess(el) {
     
     if (gissning == svar) {
         wrapper.style.background = 'lightgreen'
-        
+        // Fetches the current amount of correct guesses on a item.
+        temp = window.localStorage.getItem(svar);
+        // Updates the number of correct guesses.
+        if (temp != null && temp != 'undefined') {
+            temp = parseInt(temp) + 1
+        } else {
+            temp = 1
+        }
+        window.localStorage.setItem(svar, temp);
+
         setTimeout(() => {
             location.reload();
-            
         }, 2500);
-        
     } 
     else {
+        window.localStorage.setItem(svar, 0);
+
         wrapper.style.background = 'red'
         setTimeout(() => {
             wrapper.style.background = '#fff'
         }, 1000);
     }
-    
-    
+}
+
+function reset() {
+    window.localStorage.clear();
 }
