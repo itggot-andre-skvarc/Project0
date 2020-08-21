@@ -1,8 +1,41 @@
-img {
-    width: 200px;
-    height: auto;
+body {
+    padding: auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
 }
+
+
+.bilder {
+    padding: auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+
+
+
+}
+
+img {
+    height: 300px;
+    width: 250px;
+    margin-top: 50px;
+    margin: 15px;
+}
+
 a {
     text-decoration: none;
     color: black;
+}
+
+.reset {
+    font-size: 50px;
+    border-width: 100px;
+    text-decoration-style: wavy;
+    color: black;
+    background-color: green;
+    width: fit-content;
+}
+
+h2 {
+    text-align: center;
+    font-size: 80px;
 }
