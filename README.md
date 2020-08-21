@@ -19,3 +19,8 @@ A basic webserver that serves a simple game for learning peoples names.
 
 #### Not using Rake
 ```rackup```
+
+### Compatability
+#### Tested on
+* Google Chrome
+* Safari
