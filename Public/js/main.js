@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     if (location.href.includes('/game')) {
-    game()  
+        game()
     } else {
         window.localStorage.clear();
     }
@@ -8,11 +8,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function game() {
     data = document.querySelector('.hide')
-    console.log(data.innerHTML)
     console.log(data.innerHTML.replace('=&gt;', ':'))
     data = JSON.parse(data.innerHTML.replaceAll('=&gt;', ':'))
-    console.log(data)
-    
+
     wrapper = document.querySelector('body')
     dataLength = Object.keys(data).length
     running = true
@@ -50,7 +48,7 @@ function game() {
         }
 
         randomName = data[Math.round(slump)]['name']
-  
+
         temp = window.localStorage.getItem(randomName);
         if (temp <= 3) {
             running = false
@@ -59,26 +57,37 @@ function game() {
     console.log(randomName)
     nameElement = document.createElement('h2')
     nameElement.innerHTML = randomName
-    console.log(nameElement)
     wrapper.append(nameElement)
-    
-    for (i = 0; i < dataLength;  i++){
-        console.log(data[i])
+    divElement = document.createElement('div')
+    divElement.classList.add('bilder')
+    list = [0,1,2,3,4,5,6,7,8,9,10]
+    for (i = 0; i < dataLength; i++) {
         img = document.createElement('img')
-        img.src = "/img/" + data[i]['img']
-        img.alt = data[i]['name']
-        img.onclick = function () {guess(this)}
-        
-        wrapper.append(img)
+
+        s = Math.random(list.length - 1) * list.length - 1
+        if (s < 0) {
+            s = s * -1
+        }
+        s = Math.floor(s)
+        number = list[s]
+        list.splice(s, 1)
+        img.src = "/img/" + data[number]['img']
+        img.alt = data[number]['name']
+        img.onclick = function () {
+            guess(this)
+        }
+
+        divElement.append(img)
     };
+    wrapper.append(divElement)
 }
 
 
 
 function guess(el) {
-    svar = document.querySelector("h2").innerHTML  
+    svar = document.querySelector("h2").innerHTML
     gissning = $(el).attr('alt')
-    
+
     if (gissning == svar) {
         wrapper.style.background = 'lightgreen'
         // Fetches the current amount of correct guesses on a item.
@@ -113,7 +122,7 @@ function guess(el) {
             }
         } else {
             counter = 0
-    } 
+        }
         window.localStorage.setItem('answerCounter', counter);
 
         window.localStorage.setItem(svar, 0);
