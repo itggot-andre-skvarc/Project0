@@ -2,11 +2,16 @@
 header 
     a href="/game"
      h1 Till spelet
+    a href="/people"
+     h1 Lägg till personer
     
 
 .home
     - @people.each do |person|
         .
-            img src="./img/#{person[1]['img']}"
+            img src="./img/users/#{person[1]['img']}"
             p #{person[1]['name']}
+            
+            a href="/person/delete/#{person[0]}"
+                p delete 
 

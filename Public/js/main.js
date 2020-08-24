@@ -85,7 +85,7 @@ function game() {
         s = Math.floor(s)
         number = list[s]
         list.splice(s, 1)
-        img.src = "/img/" + data[number]['img']
+        img.src = "/img/users/" + data[number]['img']
         img.alt = data[number]['name']
         img.onclick = function () {
             guess(this)
