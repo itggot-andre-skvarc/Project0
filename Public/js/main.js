@@ -8,12 +8,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function game() {
     data = document.querySelector('.hide')
-    console.log(data.innerHTML.replace('=&gt;', ':'))
-    data = JSON.parse(data.innerHTML.replaceAll('=&gt;', ':'))
+
+    // Converts the imported data to JSON after correcting the format.
+    temp = data.innerHTML
+    for (i = 0; i < Math.round(data.innerHTML.length / 4); i ++) {
+        temp = temp.replace('=&gt;', ':')
+    }
+    data = JSON.parse(temp)
 
     wrapper = document.querySelector('body')
     dataLength = Object.keys(data).length
     running = true
+
+    // Generate user
     while (running) {
         counter = window.localStorage.getItem('answerCounter');
 
@@ -54,13 +61,19 @@ function game() {
             running = false
         }
     }
-    console.log(randomName)
+
     nameElement = document.createElement('h2')
     nameElement.innerHTML = randomName
     wrapper.append(nameElement)
     divElement = document.createElement('div')
     divElement.classList.add('bilder')
-    list = [0,1,2,3,4,5,6,7,8,9,10]
+
+    // Randomize image order
+    list = new Array(dataLength);
+    for (i = 0; i < list.length; i++) {
+        list[i] = [i]
+    }
+
     for (i = 0; i < dataLength; i++) {
         img = document.createElement('img')
 
