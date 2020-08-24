@@ -49,6 +49,7 @@ function game() {
             return ''
         }
 
+        // Randomize who is choosen.
         slump = Math.random(dataLength - 1) * dataLength - 1
         if (slump < 0) {
             slump = slump * -1

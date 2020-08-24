@@ -4,9 +4,9 @@ header
      h1 Till spelet
     
 
-
-- @people.each do |person|
-    .
-        img src="./img/#{person[1]['img']}"
-        p #{person[1]['name']}
+.home
+    - @people.each do |person|
+        .
+            img src="./img/#{person[1]['img']}"
+            p #{person[1]['name']}
 

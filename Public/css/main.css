@@ -1,24 +1,41 @@
 body {
     padding: auto;
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
 }
 
+.home {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+}
+
+.home div {
+    padding: 15px;
+}
 
 .bilder {
     padding: auto;
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
+}
 
+/* On large screens dislay 6 elements */
+@media only screen and (min-width : 1824px) {
+    .bilder {
+        grid-template-columns: auto auto auto auto auto auto;
+    }
 
+    .home {
+        grid-template-columns: auto auto auto auto auto auto;
+    }
+}
 
+.bilder img {
+    margin: 15px;
 }
 
 img {
     height: 300px;
     width: 250px;
     margin-top: 50px;
-    margin: 15px;
 }
 
 a {
