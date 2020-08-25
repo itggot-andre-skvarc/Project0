@@ -6,12 +6,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 })
 
+// How many right guesses that are required to complete the game
+const guessesCount = 1
+
 function game() {
     data = document.querySelector('.hide')
 
     // Converts the imported data to JSON after correcting the format.
     temp = data.innerHTML
-    for (i = 0; i < Math.round(data.innerHTML.length / 4); i ++) {
+    for (i = 0; i < Math.round(data.innerHTML.length / 4); i++) {
         temp = temp.replace('=&gt;', ':')
     }
     data = JSON.parse(temp)
@@ -25,8 +28,10 @@ function game() {
         counter = window.localStorage.getItem('answerCounter');
 
         // You have gussed on all images, and now the game is over
-        if (parseInt(counter) == dataLength * 4) {
+        if (parseInt(counter) == dataLength * guessesCount) {
             popup = document.createElement('div')
+            popup.classList.add('popup')
+            document.querySelector('body').classList.add('sid')
             title = document.createElement('h3')
             title.innerHTML = 'Du klararde det.'
             popup.append(title)
@@ -58,7 +63,7 @@ function game() {
         randomName = data[Math.round(slump)]['name']
 
         temp = window.localStorage.getItem(randomName);
-        if (temp <= 3) {
+        if (temp <= guessesCount - 1) {
             running = false
         }
     }
