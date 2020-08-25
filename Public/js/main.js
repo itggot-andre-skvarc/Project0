@@ -78,7 +78,7 @@ function game() {
     for (i = 0; i < dataLength; i++) {
         img = document.createElement('img')
 
-        s = Math.random(list.length - 1) * list.length - 1
+        s = Math.random(list.length - 1) * list.length
         if (s < 0) {
             s = s * -1
         }
