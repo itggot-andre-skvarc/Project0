@@ -1,5 +1,6 @@
 body {
     padding: auto;
+    background-color: peachpuff;
 }
 
 .home {
@@ -30,6 +31,48 @@ body {
 
 .bilder img {
     margin: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    
+   
+}
+
+
+.popup {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+}
+
+.sid{
+    background-image: url('/img/pV6hy9v.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.popup h3 {
+    grid-column: 1 / span 2;
+    text-align: center;
+    font-size: 2em;
+}
+
+.popup p {
+    margin-left: auto;
+    margin-right: 0;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.popup a {
+    margin-left: 0;
+    margin-right: auto;
+    font-size: 1.5em;
+}
+
+.popup * {
+    margin-top: 0;
+    padding: 3px;
 }
 
 img {
@@ -48,11 +91,81 @@ a {
     border-width: 100px;
     text-decoration-style: wavy;
     color: black;
-    background-color: green;
     width: fit-content;
 }
 
 h2 {
     text-align: center;
     font-size: 80px;
+}
+
+
+
+.home div{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.home div p{
+
+    font-size: 60px;
+    margin: 0;
+
+}
+
+.delete p {
+
+    font-size: 40px !important;
+    background-color: red;
+    margin: 0px;
+    text-align: center;
+    padding: 5px;
+}
+
+.hidden {
+
+    display: none;
+}
+
+.forum input{
+
+    height: 40px;
+
+}
+
+.forum button{
+
+    height: 40px;
+}
+
+.forum{
+    
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.lista{
+
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 30px;
+    background-color: rgba(225, 225, 225, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+
+
+}
+
+.lista p{
+
+    text-align: center;
 }

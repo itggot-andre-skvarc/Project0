@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     if (location.href.includes('/game')) {
+        if (window.localStorage.getItem("starttime") == null || window.localStorage.getItem("starttime") == "undefined"){        
+            var today = new Date();
+            window.localStorage.setItem("starttime",today)            
+        } 
         game()
     } else {
         window.localStorage.clear();
@@ -29,6 +33,23 @@ function game() {
 
         // You have gussed on all images, and now the game is over
         if (parseInt(counter) == dataLength * guessesCount) {
+            var starttime = window.localStorage.getItem("starttime")
+            var now = new Date();
+            pxz = Date.parse(starttime)
+            result = Date.parse(now) - pxz
+            result = result / 1000 
+            console.log(result)
+            result = Math.round((result + Number.EPSILON) * 100) /100
+            if (result <= 60 ) {
+                result = result.toString() +" S" 
+
+            }
+            else {
+                result = Math.round(((result / 60) + Number.EPSILON) * 100) /100
+                result = result.toString() +" Min"
+                
+            }
+            
             popup = document.createElement('div')
             popup.classList.add('popup')
             document.querySelector('body').classList.add('sid')
@@ -44,11 +65,52 @@ function game() {
             }
             popup.append(resetButton)
             learnMore = document.createElement('a')
-            learnMore.innerHTML = 'Se alla bilder'
+            learnMore.innerHTML = '| Se alla bilder'
             learnMore.href = "/"
             popup.append(learnMore)
 
             wrapper.append(popup)
+
+            tidform = document.createElement("form")
+            tidform.classList.add("forum")
+            input = document.createElement("input")
+            input.name = "name"
+            input.placeholder = "Username"
+            input2 = document.createElement("input")
+            input2.name = "result"
+            input2.classList.add("hidden")
+            input2.value = result
+            button = document.createElement("button")
+            button.innerHTML = "Spara tid"
+            tidform.action = "/leaderboard/add"
+            tidform.method = "post"
+            tidform.append(input2)
+            tidform.append(button)
+            tidform.append(input)
+            wrapper.append(tidform)
+
+            $.getJSON('/leaderboard/fetch', function (data) {
+                console.log(data)
+                lista = document.createElement("div")
+                lista.classList.add("lista")
+                for(el in data){
+                    ptag = document.createElement("p")
+                    ptag2 = document.createElement("p")
+                    ptag2.innerHTML = el
+                    ptag.innerHTML = data[el]
+
+                    lista.append(ptag2)
+                    lista.append(ptag)
+
+
+                }
+                wrapper.append(lista)
+            })
+            
+
+
+            
+
 
             running = false
             return ''
@@ -148,7 +210,7 @@ function guess(el) {
 
         wrapper.style.background = 'red'
         setTimeout(() => {
-            wrapper.style.background = '#fff'
+            wrapper.style.background = 'peachpuff'
         }, 1000);
     }
 }

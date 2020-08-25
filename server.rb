@@ -63,4 +63,18 @@ class Server < Sinatra::Base
         File.write('people.json', new_hash.to_json)
         redirect '/'
     end
+
+    post '/leaderboard/add' do
+        data = File.read 'leaderboard.json'
+        data = JSON.parse(data)
+        data[params[:name]] = params[:result]
+        File.write("leaderboard.json",data.to_json)
+        redirect '/game'
+    end
+
+    get '/leaderboard/fetch' do
+        data = File.read 'leaderboard.json'
+        data = JSON.parse(data).to_json
+
+    end
 end
