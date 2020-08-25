@@ -36,7 +36,6 @@ class Server < Sinatra::Base
         File.write("./Public/img/users/#{filename}", bild[:tempfile].read)
         datapeople = File.read("./people.json") 
         datapeople = JSON.parse(datapeople)
-        p bild
         hash_data = {"name": namn, "img": filename}
         newhash = Hash[datapeople.length.to_s,  hash_data]
         datapeople.merge!(newhash) 
@@ -47,6 +46,21 @@ class Server < Sinatra::Base
 
     get '/people/delete/:id' do
         params[:id]
-    
+        data = File.read 'people.json'
+        data = JSON.parse(data)
+        data.delete params[:id].to_s
+        new_hash = {}
+
+        data.each_with_index do |el, i|
+            if el[0].to_i > params[:id].to_i
+                x = i + 1
+                new_hash[(x-1).to_s] = data.delete (x).to_s
+            else
+                new_hash[i.to_s] = data.delete (i).to_s
+            end
+        end
+
+        File.write('people.json', new_hash.to_json)
+        redirect '/'
     end
 end
