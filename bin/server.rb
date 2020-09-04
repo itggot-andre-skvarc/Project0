@@ -1,6 +1,8 @@
 
 class Server < Sinatra::Base
     enable :sessions
+    set :public_folder, 'Public'
+
 
     before do
         @error = session[:error]
